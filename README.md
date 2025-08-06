@@ -14,7 +14,13 @@ This repository contains a simple Node.js API and a React client used for a user
 
 3. Start the API server:
 
-   ```bash
+   ```bash├── api/ # Backend source code + Dockerfile.api
+│ └── Dockerfile # Backend Dockerfile
+├── client/ # Frontend source code + Dockerfile.client + Nginx config
+│ ├── Dockerfile # Frontend Dockerfile
+│ └── default.conf # Nginx config for React SPA
+├── docker-compose.yml # Docker setup for backend, frontend, mysql
+├── Jenkinsfile # CI/CD pipeline (this branch)
    cd api
    npm start
    ```

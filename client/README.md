@@ -1,115 +1,70 @@
-# 🚀 3-Tier DevSecOps Project – `docker-build-uc` Branch
+# Getting Started with Create React App
 
-This branch demonstrates a complete DevSecOps CI/CD pipeline for a full-stack Node.js + React application using Jenkins, Docker, and Docker Compose. It integrates static code analysis, secret scanning, vulnerability scanning, and automated deployment.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
----
+## Available Scripts
 
-## 🧰 Tools & Technologies
+In the project directory, you can run:
 
-- **CI/CD**: Jenkins (Scripted Pipeline)
-- **Code Quality**: SonarQube
-- **Secrets Scan**: Gitleaks
-- **Security Scan**: Trivy
-- **Frontend**: React (served via Nginx)
-- **Backend**: Node.js + Express
-- **Database**: MySQL 8
-- **Containerization**: Docker & Docker Compose
+### `npm start`
 
----
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## 🗂️ Project Structure
-```text .
-├── api/ # Backend source code + Dockerfile.api
-│ └── Dockerfile # Backend Dockerfile
-├── client/ # Frontend source code + Dockerfile.client + Nginx config
-│ ├── Dockerfile # Frontend Dockerfile
-│ └── default.conf # Nginx config for React SPA
-├── docker-compose.yml # Docker setup for backend, frontend, mysql
-├── Jenkinsfile # CI/CD pipeline (this branch)
-```
----
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
----
+### `npm test`
 
-## ⚙️ Jenkins Pipeline Overview
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### 📋 Jenkinsfile Summary
+### `npm run build`
 
-The Jenkins pipeline performs:
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-1. ✅ Git checkout from `docker-build-uc`
-2. 🧪 Node.js syntax validation for frontend/backend
-3. 🔐 Secret scanning using Gitleaks
-4. 📊 Code quality check with SonarQube
-5. ✅ Quality gate validation
-6. 🛡️ Trivy filesystem scanning
-7. 🐳 Docker build/tag/push backend image
-8. 🐳 Docker build/tag/push frontend image
-9. 🧩 Deployment via Docker Compose
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
----
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## 🔧 Setup Instructions
+### `npm run eject`
 
-### 1️⃣ Clone the Repository
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-```bash
-git clone -b docker-build-uc https://github.com/udaychopade27/3-Tier-DevSecOps-Mega-Project.git
-cd 3-Tier-DevSecOps-Mega-Project
-```
----
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-## 🔐 DevSecOps Tools Setup
-### ✅ SonarQube
-Hosted on a separate EC2 instance (see previous branch setup).
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-Project Key: NodeJS-Project
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-Jenkins Credentials ID: sonar-token
+## Learn More
 
-Webhook: http://<jenkins-server>:8080/sonarqube-webhook/
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-### ✅ DockerHub
-Docker images tagged and pushed:
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-uday27/frontend:latest
+### Code Splitting
 
-uday27/backend:latest
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-Jenkins Credentials ID: docker-cred
+### Analyzing the Bundle Size
 
-## ✅ Trivy & Gitleaks
-### Trivy:
-``bash
-trivy fs --format table -o fs-report.html .
-trivy image --format table -o backend-image-report.html uday27/backend:latest
-trivy image --format table -o frontend-image-report.html uday27/frontend:latest
-```
-### Gitleaks:
-``bash
-gitleaks detect --source ./client --exit-code 1
-gitleaks detect --source ./api --exit-code 1
-```
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-## ✅ Running Jenkins Pipeline
-Once everything is configured:
+### Making a Progressive Web App
 
-Commit & push changes to the docker-build-uc branch.
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-Jenkins will:
+### Advanced Configuration
 
-Build and test the code
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-Push Docker images
+### Deployment
 
-Deploy the full-stack app via Docker Compose
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-App will be accessible at:
+### `npm run build` fails to minify
 
-**Frontend:** ```bash http://<jenkins-server-ip>:3000 ```
-
-**Backend:** ```bash http://<jenkins-server-ip>:5000/api ```
-
-## 📬 Maintainer
-Created by: Uday Chopade
-🔗 [GitHub](https://www.github.com/udaychopade27)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
