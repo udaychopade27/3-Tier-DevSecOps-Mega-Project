@@ -143,9 +143,9 @@ Push to DockerHub
 Deploy app using Docker Compose
 
 ## 🌐 App Access (After Deployment)
-Frontend: http://<jenkins-server-ip>:3000
+Frontend: http://jenkins-server-ip:3000
 
-Backend: http://<jenkins-server-ip>:5000/api
+Backend: http://jenkins-server-ip:5000/api
 
 ## 👤 Maintainer
 Created by: Uday Chopade
