@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Git checkout') {
             steps {
-                git branch: 'local-dev-uc', url: 'https://github.com/udaychopade27/3-Tier-DevSecOps-Mega-Project.git'
+                git branch: 'docker-build-uc', url: 'https://github.com/udaychopade27/3-Tier-DevSecOps-Mega-Project.git'
             }
         }
         stage('Frontend Compilitation') {

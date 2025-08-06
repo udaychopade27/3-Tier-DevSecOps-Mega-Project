@@ -15,7 +15,8 @@ services:
       - "3306:3306"
 
   backend:
-    build: ./api
+    # build: ./api
+    image: uday27/backend:latest
     container_name: backend-api
     environment:
       DB_HOST: mysql
@@ -30,7 +31,8 @@ services:
       - "5000:5000"
 
   frontend:
-    build: ./client
+    # build: ./client
+    image: uday27/frontend:latest
     container_name: frontend-react
     ports:
       - "3000:80"
