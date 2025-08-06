@@ -61,14 +61,19 @@ Install the following plugins:
 ## 🔍 SonarQube Server Setup (EC2)
 ### 1. Prerequisites
 Install Java:
+```bash
 sudo apt update
 sudo apt install openjdk-11-jdk -y
+```
+
 ### 2. Install SonarQube
 
 #### Create a new user
+```bash
 sudo adduser sonar
 sudo usermod -aG sudo sonar
 su - sonar
+```
 
 #### Download and extract SonarQube
 ```bash
@@ -82,11 +87,11 @@ Default credentials: admin / admin
 ```
 ---
 ### 3. Create Token & Webhook
-Create a Token under My Account → Security.
+- Create a Token under My Account → Security.
 
-Add Webhook under Project Settings → Webhooks:
+- Add Webhook under Project Settings → Webhooks:
 
-http://<JENKINS_SERVER_IP>:8080/sonarqube-webhook/
+- http://<JENKINS_SERVER_IP>:8080/sonarqube-webhook/
 
 ### ⚙️ Install Sonar Scanner Tool in Jenkins
 - Go to Manage Jenkins → Global Tool Configuration
