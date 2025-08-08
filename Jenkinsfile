@@ -1,42 +1,48 @@
 
 pipeline {
     agent any
+    
     tools {
-        nodejs 'NodeJS'
+        nodejs 'nodeJS'
     }
+
     environment {
-        SONAR_SCANNER = tool 'sonar-scanner'
+        SCANNER_HOME = tool 'sonar-scanner'
     }
     stages {
-        stage('Git checkout') {
+        stage('Git Checkout') {
             steps {
-                git branch: 'docker-build-uc', url: 'https://github.com/udaychopade27/3-Tier-DevSecOps-Mega-Project.git'
+                git branch: 'dev-k8s-uc', url: 'https://github.com/udaychopade27/3-Tier-DevSecOps-Mega-Project.git'
             }
         }
-        stage('Frontend Compilitation') {
+        
+        stage('Frontend Compilation') {
             steps {
                 dir('client') {
                     sh 'find . -name "*.js" -exec node --check {} +'
-                 }
+                }
             }
         }
-        stage('backend Compilitation') {
+        
+        stage('Backend Compilation') {
             steps {
                 dir('api') {
                     sh 'find . -name "*.js" -exec node --check {} +'
-                 }
+                }
             }
         }
-        stage('Gitleaks Scan') {
+        
+        stage('GitLeaks Scan') {
             steps {
                 sh 'gitleaks detect --source ./client --exit-code 1'
                 sh 'gitleaks detect --source ./api --exit-code 1'
             }
         }
+        
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('Sonar') {
-                    sh ''' $SONAR_SCANNER/bin/sonar-scanner -Dsonar.projectName=NodeJS-Project \
+                withSonarQubeEnv('sonar') {
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=NodeJS-Project \
                             -Dsonar.projectKey=NodeJS-Project '''
                 }
             }
@@ -53,6 +59,7 @@ pipeline {
                 sh 'trivy fs --format table -o fs-report.html .'
             }
         }
+        
         stage('Build-Tag & Push Backend Docker Image') {
             steps {
                 script {
@@ -82,7 +89,8 @@ pipeline {
             }
              
         }  
-         stage('K8-deploy') {
+        
+        stage('K8-deploy') {
             steps {
                 script {
                     withKubeConfig(caCertificate: '', clusterName: 'devopsshack-cluster', contextName: '', credentialsId: 'k8-token', namespace: 'dev', restrictKubeConfigAccess: false, serverUrl: 'https://58401D63AF7B16926BE2C779FE8FC69B.gr7.ap-south-1.eks.amazonaws.com') {
@@ -107,5 +115,7 @@ pipeline {
                 }
             }
         }
+        
+            
     }
 }
