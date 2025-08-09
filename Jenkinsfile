@@ -10,11 +10,6 @@ pipeline {
         SCANNER_HOME = tool 'sonar-scanner'
     }
     stages {
-        stage('Clean Workspace') {
-            steps {
-                cleanWs()  // Cleans the entire workspace
-            }
-        }
         stage('Git Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/udaychopade27/3-Tier-DevSecOps-Mega-Project.git'
@@ -39,8 +34,8 @@ pipeline {
         
         stage('GitLeaks Scan') {
             steps {
-                sh 'gitleaks detect --source ./client'
-                sh 'gitleaks detect --source ./api'
+                sh 'gitleaks detect --source ./client --exit-code 1 --no-git'
+                sh 'gitleaks detect --source ./api --exit-code 1 --no-git'
             }
         }
         
