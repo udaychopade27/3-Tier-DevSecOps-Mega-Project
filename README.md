@@ -42,8 +42,6 @@ graph TD
 - **Docker Containerization** of all components
 - **Kubernetes Deployment** on AWS EKS
 - **Ingress Controller** for routing
-- **Helm Charts** for application deployment
-- **Monitoring** with Prometheus & Grafana
 
 ---
 
