@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/jaiswaladi246/3-Tier-DevSecOps-Mega-Project.git'
+                git branch: 'main', url: 'https://github.com/udaychopade27/3-Tier-DevSecOps-Mega-Project.git'
             }
         }
         
