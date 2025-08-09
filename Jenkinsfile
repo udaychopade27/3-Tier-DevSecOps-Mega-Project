@@ -39,8 +39,8 @@ pipeline {
         
         stage('GitLeaks Scan') {
             steps {
-                sh 'gitleaks detect --source ./client --no-git'
-                sh 'gitleaks detect --source ./api --no-git'
+                sh 'gitleaks detect --source ./client'
+                sh 'gitleaks detect --source ./api'
             }
         }
         
