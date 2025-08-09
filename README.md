@@ -26,7 +26,7 @@ All components are containerized, scanned for vulnerabilities, and deployed to K
 ```mermaid
 graph TD
     A[Developer Code Commit - GitHub] --> B[Jenkins CI/CD Pipeline]
-    B --> C[Build Docker Images & Push to ECR]
+    B --> C[Build Docker Images & Push to DockerHub]
     C --> D[Terraform Creates EKS Cluster & Resources]
     D --> E[Kubernetes Deployments & Services]
     E --> F[NGINX Ingress Controller]
