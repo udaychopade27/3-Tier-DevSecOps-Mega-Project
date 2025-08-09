@@ -88,25 +88,25 @@ This deploys MySQL with persistent storage, the backend (Node.js), and the front
 ---
 
 ## DevSecOps Tools Summary
-**SonarQube:** Automated static code analysis inside Jenkins.
-**Gitleaks:** Secret scanning for source code.
-**Trivy:** Vulnerability scanning for filesystem and image layers.
-**RBAC:** Secures Jenkins access to Kubernetes resources using least-privilege.
+- **SonarQube:** Automated static code analysis inside Jenkins.
+- **Gitleaks:** Secret scanning for source code.
+- **Trivy:** Vulnerability scanning for filesystem and image layers.
+- **RBAC:** Secures Jenkins access to Kubernetes resources using least-privilege.
 
 ---
 
 ## Accessing Your Application
 After successful deployment:
 
-**Backend:** Exposed via LoadBalancer service in AWS.
-**Frontend:** Accessible via its own LoadBalancer—grab the external IP/hostname.
+- **Backend:** Exposed via LoadBalancer service in AWS.
+- **Frontend:** Accessible via its own LoadBalancer—grab the external IP/hostname.
 
 ---
 
 ## Next Steps
-Implement Ingress with custom domain routing.
-Add Monitoring & Logging: Prometheus, Grafana, Elasticsearch, etc.
-Add automated scaling, SSL/TLS, and cost optimization in EKS.
+- Implement Ingress with custom domain routing.
+- Add Monitoring & Logging: Prometheus, Grafana, Elasticsearch, etc.
+- Add automated scaling, SSL/TLS, and cost optimization in EKS.
 
 ---
 ## 🙏 Credits
@@ -114,7 +114,7 @@ This project is originally created by [Aditya Jaiswal](https://github.com/jaiswa
 I have followed his [YouTube](https://youtube.com/playlist?list=PLAdTNzDIZj_8bL9tHTXma8Lk89ygTvi6D&si=6DYLMdvgTpxFenO5) Playlist for implementation, while adding my own configurations, setup, and hands-on deployment on my environment.
 
 ## 📌 My Implementation
-While the base project belongs to Aditya Jaiswal, 
+While the base project belongs to [Aditya Jaiswal](https://github.com/jaiswaladi246), 
 I have:
-Implemented the pipeline end-to-end on my local & AWS setup.
-Customized configurations for my environment.
+- Implemented the pipeline end-to-end on my local & AWS setup.
+- Customized configurations for my environment.
