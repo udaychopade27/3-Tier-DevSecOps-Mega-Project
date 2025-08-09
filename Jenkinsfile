@@ -3,7 +3,7 @@ pipeline {
     agent any
     
     tools {
-        nodejs 'NodeJS'
+        nodejs 'nodejs23'
     }
 
     environment {
@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'dev-k8s-uc', url: 'https://github.com/udaychopade27/3-Tier-DevSecOps-Mega-Project.git'
+                git branch: 'main', url: 'https://github.com/jaiswaladi246/3-Tier-DevSecOps-Mega-Project.git'
             }
         }
         
@@ -41,7 +41,7 @@ pipeline {
         
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('Sonar') {
+                withSonarQubeEnv('sonar') {
                     sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=NodeJS-Project \
                             -Dsonar.projectKey=NodeJS-Project '''
                 }
@@ -90,32 +90,43 @@ pipeline {
              
         }  
         
-        stage('K8-deploy') {
+        stage('Manual Approval for Production') {
             steps {
-                script {
-                    withKubeConfig(caCertificate: '', clusterName: 'devopsshack-cluster', contextName: '', credentialsId: 'k8-token', namespace: 'dev', restrictKubeConfigAccess: false, serverUrl: 'https://58401D63AF7B16926BE2C779FE8FC69B.gr7.ap-south-1.eks.amazonaws.com') {
-                            sh 'kubectl apply -f k8s-dev/sc.yaml -n dev'
-                            sh 'kubectl apply -f k8s-dev/database.yaml -n dev'
-                            sh 'kubectl apply -f k8s-dev/backend.yaml -n dev'
-                            sh 'kubectl apply -f k8s-dev/frontend.yaml -n dev'
-                            sleep 30
-                        }
+                timeout(time: 1, unit: 'HOURS') {
+                    input message: 'Approve deployment to PRODUCTION?', ok: 'Deploy'
                 }
             }
         }
         
-        stage('verify-K8-deploy') {
+       stage('Deployment To Prod') {
             steps {
                 script {
-                    withKubeConfig(caCertificate: '', clusterName: 'devopsshack-cluster', contextName: '', credentialsId: 'k8-token', namespace: 'dev', restrictKubeConfigAccess: false, serverUrl: 'https://58401D63AF7B16926BE2C779FE8FC69B.gr7.ap-south-1.eks.amazonaws.com') {
-                            sh 'kubectl get pods -n dev'
-                            sh 'kubectl get svc -n dev'
-                            
-                        }
+                    withKubeConfig(caCertificate: '', clusterName: 'devopsshack-cluster', contextName: '', credentialsId: 'k8-prod-token', namespace: 'prod', restrictKubeConfigAccess: false, serverUrl: 'https://D5A69030E35C79637C662E981E3D451E.gr7.ap-south-1.eks.amazonaws.com') {
+                        sh 'kubectl apply -f k8s-prod/sc.yaml'
+                        sleep 20
+                        sh 'kubectl apply -f k8s-prod/mysql.yaml -n prod'
+                        sh 'kubectl apply -f k8s-prod/backend.yaml -n prod'
+                        sh 'kubectl apply -f k8s-prod/frontend.yaml -n prod'
+                        sh 'kubectl apply -f k8s-prod/ci.yaml'
+                        sh 'kubectl apply -f k8s-prod/ingress.yaml -n prod'
+                        sleep 30
+                    }
                 }
             }
         }
         
+        stage('Verify Deployment To Prod') {
+            steps {
+                script {
+                    withKubeConfig(caCertificate: '', clusterName: 'devopsshack-cluster', contextName: '', credentialsId: 'k8-prod-token', namespace: 'prod', restrictKubeConfigAccess: false, serverUrl: 'https://D5A69030E35C79637C662E981E3D451E.gr7.ap-south-1.eks.amazonaws.com') {
+                        sh 'kubectl get pods -n prod'
+                        sleep 20
+                         sh 'kubectl get ingress -n prod'
+                        
+                    }
+                }
+            }
+        }
             
     }
 }
