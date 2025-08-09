@@ -150,3 +150,14 @@ Backend: http://jenkins-server-ip:5000/api
 ## 👤 Maintainer
 Created by: Uday Chopade
 🔗 [GitHub](https://www.github.com/udaychopade27)
+
+## 🙏 Credits
+This project is originally created by [Aditya Jaiswal](https://github.com/jaiswaladi246).
+I have followed his [YouTube](https://youtube.com/playlist?list=PLAdTNzDIZj_8bL9tHTXma8Lk89ygTvi6D&si=6DYLMdvgTpxFenO5) Playlist for implementation, while adding my own configurations, setup, and hands-on deployment on my environment.
+
+## 📌 My Implementation
+While the base project belongs to Aditya Jaiswal, 
+I have:
+Implemented the pipeline end-to-end on my local & AWS setup.
+write dockerfile and docker compose file to build and run app.
+Customized configurations for my environment.
