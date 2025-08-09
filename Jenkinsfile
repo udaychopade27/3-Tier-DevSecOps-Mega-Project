@@ -39,8 +39,8 @@ pipeline {
         
         stage('GitLeaks Scan') {
             steps {
-                sh 'gitleaks detect --source ./client --exit-code 1'
-                sh 'gitleaks detect --source ./api --exit-code 1'
+                sh 'gitleaks detect --source ./client'
+                sh 'gitleaks detect --source ./api'
             }
         }
         
