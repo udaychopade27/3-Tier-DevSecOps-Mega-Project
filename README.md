@@ -78,10 +78,10 @@ Configure dashboards for application and infrastructure metrics.
 
 ---
 
-📂 Repository Structure
+## 📂 Repository Structure
 ```text
 .
-📦 3-Tier-DevSecOps-Mega-Project
+**📦 3-Tier-DevSecOps-Mega-Project**
  ┣ 📂 backend
  ┣ 📂 frontend
  ┣ 📂 k8s-prod
@@ -90,6 +90,6 @@ Configure dashboards for application and infrastructure metrics.
  ┗ 📜 Jenkinsfile
 ```
 
-🙏 Acknowledgements
+## 🙏 Acknowledgements
 Special thanks to [jaiswaladi246](https://github.com/jaiswaladi246) for the amazing
 [YouTube](https://youtube.com/playlist?list=PLAdTNzDIZj_8bL9tHTXma8Lk89ygTvi6D&si=qwTHSold2sfsxf8Z) Playlist that inspired and guided this project.
