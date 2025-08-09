@@ -32,7 +32,6 @@ graph TD
     E --> F[NGINX Ingress Controller]
     F --> G[Route53 DNS Mapping]
     G --> H[User Access Application Securely]
-    E --> I[Prometheus & Grafana Monitoring]
     B --> J[Security Scans - SonarQube, Trivy, Gitleaks]
 ```
 ---
