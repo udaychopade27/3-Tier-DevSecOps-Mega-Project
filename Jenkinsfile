@@ -104,7 +104,7 @@ pipeline {
                     withKubeConfig(caCertificate: '', clusterName: 'devopsshack-cluster', contextName: '', credentialsId: 'k8-token-prod', namespace: 'prod', restrictKubeConfigAccess: false, serverUrl: 'https://D5A69030E35C79637C662E981E3D451E.gr7.ap-south-1.eks.amazonaws.com') {
                         sh 'kubectl apply -f k8s-prod/sc.yaml'
                         sleep 20
-                        sh 'kubectl apply -f k8s-prod/mysql.yaml -n prod'
+                        sh 'kubectl apply -f k8s-prod/database.yaml -n prod'
                         sh 'kubectl apply -f k8s-prod/backend.yaml -n prod'
                         sh 'kubectl apply -f k8s-prod/frontend.yaml -n prod'
                         sh 'kubectl apply -f k8s-prod/ci.yaml'
